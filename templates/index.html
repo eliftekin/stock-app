@@ -1,35 +1,68 @@
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Skeleton application demoing Heroku and Flask integration.">
-    <meta name="author" content="@gotoariel">
-    <!-- <link rel="icon" href="favicon.ico"> -->
-
-    <title>Wilkommen, bienvenue, and welcome to Heroku!</title>
+    <meta name="description" content="ticker stock application">
+    <meta name="author" content="@eliftekin">
+    <link rel="icon" href="../../../../favicon.ico">
+    <title>Stock App</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel=stylesheet href="{{ url_for('static', filename='css/main.css') }}">
+
   </head>
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-left">
-          <h2>Hello, World!</h2>
-          <ul>
-            <li><a target="_blank" href="https://www.heroku.com/">Heroku</a></li>
-            <li><a target="_blank" href="http://flask.pocoo.org/">Flask</a></li>
-            <li><a target="_blank" href="http://jinja.pocoo.org/docs/2.9/">Jinja2</a></li>
-            <li><a target="_blank" href="http://getbootstrap.com/">Bootstrap</a></li>
-          </ul>
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <header class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">Stock Display</h3>
+              <nav class="nav nav-masthead">
+                <a class="nav-link active" href="#">Home</a>
+                <a class="nav-link" href="#">Git-Hub</a>
+                <a class="nav-link" href="https://www.thedataincubator.com/12day.html">12-day</a>
+              </nav>
+            </div>
+          </header>
+
+          <main role="main" class="inner cover">
+            <h1 class="cover-heading">Select Ticker to Display</h1>
+          </main>
+
         </div>
+
+        <form class="form-inline" method="POST" action="{{ url_for('display_ticker') }}">
+          <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"></span>
+                    <select name="comp_select" class="selectpicker form-control">
+                      {% for o in tickerlist %}
+                      <option value="{{ o.ticker }}">{{ o.ticker }}</option>
+                      {% endfor %}
+                    </select>
+            </div>
+            <p>
+            <input type="radio" name='features' value=''     /> Regular<br>
+            <input type="radio" name='features' value='adj_' />Adjusted<br>
+            </p>
+            <button type="submit" class="btn btn-default">Go</button>
+          </div>
+        </form>
       </div>
     </div>
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <!-- <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script> -->
+    <!-- <script src="../../../../assets/js/vendor/popper.min.js"></script> -->
+    <!-- <script src="../../../../dist/js/bootstrap.min.js"></script> -->
   </body>
 </html>
