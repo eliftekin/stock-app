@@ -4,7 +4,6 @@ import simplejson as json
 
 #data analysis
 import pandas as pd
-import datetime
 #import time
 #from math import pi
 
