@@ -36,7 +36,7 @@ class Stock:
         # source = ColumnDataSource(self.df[self.df['ticker']== ticker])
         self.nasdaq = "http://www.nasdaq.com/symbol/" + ticker.lower() + "/real-time"
         t = 'Regular' if feature == '' else 'Adjusted'
-        self.title = 'Quandle WIKI ' + t +' Stock Prices: ' + ticker
+        self.title = 'Quandl WIKI ' + t +' Stock Prices: ' + ticker
 
         p = figure(plot_width=800, plot_height=400,
                 x_axis_label='date', y_axis_label='price', x_axis_type="datetime")
