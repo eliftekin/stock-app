@@ -5,6 +5,4 @@ flask
 jinja2
 pip
 simplejson
-math
-flask_wtf
 wtforms

@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from stock import Stock
 # user input
-from flask_wtf import Form
+# from flask_wtf import Form
 from wtforms.fields import RadioField, StringField, SubmitField, SelectField
 from wtforms.validators import Required
 from bokeh.embed import components
