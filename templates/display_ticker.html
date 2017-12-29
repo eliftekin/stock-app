@@ -8,12 +8,12 @@
 
     <title>Display Stock</title>
 
-    <link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel=stylesheet href="{{ url_for('static', filename='css/main.css') }}">
 
 		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-		<link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.css" type="text/css" />
+		<link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.css" type="text/css" />
 
     <style>
     body {
@@ -22,7 +22,7 @@
     </style>
 
     {{ the_div|safe }}
-    <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.js"></script>
+    <script src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.js"></script>
     {{ the_script|safe }}
 </script>
   </head>
