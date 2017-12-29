@@ -6,6 +6,5 @@ jinja2
 pip
 simplejson
 math
-numpy
 flask_wtf
 wtforms
