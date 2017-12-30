@@ -1,11 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for
 from stock import Stock
+
 # user input
-# from flask_wtf import Form
 from wtforms.fields import RadioField, StringField, SubmitField, SelectField
 from wtforms.validators import Required
 from bokeh.embed import components
-
 
 app = Flask(__name__)
 stock = Stock()
@@ -19,7 +18,6 @@ def index():
 def display_ticker():
     ticker = request.form.get('comp_select')
     feature = request.form.get('features')
-    # return(str(select)) # just to see what select is
     plot = stock.create_stock_plot(ticker, feature)
     script, div = components(plot)
     return render_template("display_ticker.html", ticker=ticker,

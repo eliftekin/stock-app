@@ -4,8 +4,6 @@ import simplejson as json
 
 #data analysis
 import pandas as pd
-#import time
-#from math import pi
 
 #plot
 from bokeh.models import ColumnDataSource
@@ -32,7 +30,6 @@ class Stock:
         self.tickers = list (self.df['ticker'].unique())
 
     def create_stock_plot(self, ticker, feature):
-        # source = ColumnDataSource(self.df[self.df['ticker']== ticker])
         self.nasdaq = "http://www.nasdaq.com/symbol/" + ticker.lower() + "/real-time"
         t = 'Regular' if feature == '' else 'Adjusted'
         self.title = 'Quandl WIKI ' + t +' Stock Prices: ' + ticker
@@ -44,12 +41,12 @@ class Stock:
         df_plot = df_plot.sort_values(by="date",ascending=True).set_index("date").last("30D")
         df_plot = df_plot.reset_index()
 
+        # source = ColumnDataSource(self.df[self.df['ticker']== ticker])
         # p.title.text = 'Quandl WIKI ' + t +' Stock Prices: ' + ticker
         # p.line('date', feature + 'open', source = source, color='navy', alpha=0.5, legend = 'open')
         # p.line('date', feature + 'close', source = source, color='red', alpha=0.5, legend = 'close')
         # p.line(df_plot['date'], df_plot[feature + 'open'],  color='navy', alpha=0.5, legend = 'open')
         p.line(df_plot['date'], df_plot[feature + 'close'], color='red', alpha=0.5)
-
         p.legend.location = "top_right"
         p.legend.click_policy="hide"
         p.xaxis.formatter=DatetimeTickFormatter(years=["%B %Y"],)

@@ -154,7 +154,7 @@ body {
   .masthead,
   .mastfoot,
   .cover-container {
-    width: 80%; /* Must be percentage or pixels for horizontal alignment */
+    width: 60%; /* Must be percentage or pixels for horizontal alignment */
   }
 }
 
