@@ -9,23 +9,18 @@
     <title>Display Stock</title>
 
 		<!-- Bootstrap core CSS -->
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
 		<!-- Custom styles for this template -->
     <link rel=stylesheet href="{{ url_for('static', filename='css/main.css') }}">
 		<link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.css" type="text/css" />
 
     <style>
-    body {
-      padding-top: 70px;
-    }
+	    body {
+	      padding-top: 70px;
+	    }
     </style>
 
-    {{ the_div|safe }}
-    <script src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.js"></script>
-    {{ the_script|safe }}
-
-</script>
   </head>
   <body>
     <div class="site-wrapper">
@@ -36,15 +31,29 @@
               <h3 class="masthead-brand">{{title}}</h3>
               <nav class="nav nav-masthead">
                 <a class="nav-link active"  href="/">Home</a>
-                <a class="nav-link" href="#">GitHub</a>
+                <a class="nav-link" href="https://github.com/eliftekin/stock-app">GitHub</a>
                 <a class="nav-link" href="https://www.thedataincubator.com/12day.html">12-day</a>
                 <a class="nav-link" href={{nasdaq}}>NASDAQ</a>
               </nav>
             </div>
           </header>
+
+					{{ the_div|safe }}
+					<script src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.js"></script>
+					{{ the_script|safe }}
+
+					</script>
+
         </div>
       </div>
     </div>
-
+		
+		<!-- Bootstrap core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+		<script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+		<script src="https://getbootstrap.com/assets/js/vendor/popper.min.js"></script>
+		<script src="https://getbootstrap.com/dist/js/bootstrap.min.js"></script>
   </body>
 </html>

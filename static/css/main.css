@@ -19,14 +19,12 @@ a:hover {
   border: .05rem solid #fff;
 }
 
+
 /*
  * Base structure
  */
-
 html,
 body {
-  /* font-family: Lora,'Helvetica Neue',Helvetica,Arial,sans-serif; */
-
   background: url(pharma-life-sciences-stocks-blur.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -34,11 +32,12 @@ body {
   background-size: cover;
 
   height: 100%;
-  overflow-y:hidden;
-
+  background-color: #024896;
+}
+body {
   color: #fff;
   text-align: center;
-  text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
+  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
@@ -47,7 +46,7 @@ body {
   width: 100%;
   height: 100%; /* For at least Firefox */
   min-height: 100%;
-  box-shadow: inset 0 0 5rem rgba(0,0,0,.5);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
 }
 .site-wrapper-inner {
   display: table-cell;
@@ -67,26 +66,25 @@ body {
 /*
  * Header
  */
-
 .masthead {
   margin-bottom: 2rem;
 }
 
-.masthead-brand {inner cover
+.masthead-brand {
   margin-bottom: 0;
 }
 
 .nav-masthead .nav-link {
   padding: .25rem 0;
   font-weight: 700;
-  color: rgba(255,255,255,1);
+  color: rgba(255, 255, 255, 1);
   background-color: transparent;
   border-bottom: .25rem solid transparent;
 }
 
 .nav-masthead .nav-link:hover,
 .nav-masthead .nav-link:focus {
-  border-bottom-color: rgba(255,255,255,.25);
+  border-bottom-color: rgba(255, 255, 255, .25);
 }
 
 .nav-masthead .nav-link + .nav-link {
@@ -111,7 +109,6 @@ body {
 /*
  * Cover
  */
-
 .cover {
   padding: 0 1.5rem;
 }
@@ -124,16 +121,14 @@ body {
 /*
  * Footer
  */
-
 .mastfoot {
-  color: rgba(255,255,255,.5);
+  color: rgba(255, 255, 255, .5);
 }
 
 
 /*
  * Affix and center
  */
-
 @media (min-width: 40em) {
   /* Pull out the header and footer */
   .masthead {
@@ -154,19 +149,13 @@ body {
   .masthead,
   .mastfoot,
   .cover-container {
-    width: 60%; /* Must be percentage or pixels for horizontal alignment */
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
 }
 
 @media (min-width: 62em) {
-  .masthead {
-      position: fixed;
-      top: 0;
-  }
-  .mastfoot {
-    position: fixed;
-    bottom: 0;
-  }
+  .masthead,
+  .mastfoot,
   .cover-container {
     width: 42rem;
   }

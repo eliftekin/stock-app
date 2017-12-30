@@ -5,22 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="stock application">
     <meta name="author" content="@eliftekin">
-    <link rel="icon" href="../../../../favicon.ico">
     <title>Stock App</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <!-- <link rel=stylesheet href="{{ url_for('static', filename='css/main.css') }}"> -->
-    <link rel=stylesheet href="static/css/main.css">
+    <link rel=stylesheet href="{{ url_for('static', filename='css/main.css') }}">
+    <!-- <link rel=stylesheet href="static/css/main.css"> -->
 
   </head>
+
   <body>
     <div class="site-wrapper">
       <div class="site-wrapper-inner">
 
         <div class="cover-container">
+
           <header class="masthead clearfix">
             <div class="inner">
               <h3 class="masthead-brand">Stock App</h3>
@@ -33,42 +34,39 @@
           </header>
 
           <main role="main" class="inner cover">
+
             <h1 class="cover-heading">Ticker Symbol to Display</h1>
+            <br>
+            <form method="POST" action="{{ url_for('display_ticker') }}">
+              <p><input type='text' name='ticker' value="AAPL" /></p>
+
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name='features' value='Open'>
+                <label class="form-check-label" for="inlineCheckbox1"/>Opening price</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name='features' value='Close' checked="checked">
+                <label class="form-check-label" for="inlineCheckbox1"/>Closing price</label>
+              </div>
+              <br>
+
+              <br>
+              <br>
+              <button type="submit" class="btn btn-default">Submit</button><br>
+            </form>
+
           </main>
         </div>
-
-        <form class="form-inline" method="POST" action="{{ url_for('display_ticker') }}">
-          <div class="form-group">
-            <input type="text" name = "ticker", class="form-control" value="AAPL">
-          </div>
-          <br>
-          <!-- <div class="form-group">
-            <div class="input-group">
-                <select name="comp_select" class="selectpicker form-control" title="Choose one of the following...">
-                  {% for o in tickerlist %}
-                  <option value="{{ o.ticker }}">{{ o.ticker }}</option>
-                  {% endfor %}
-                </select>
-            </div> -->
-            <br>
-            <br>
-            <label class="checkbox-inline"> <input type="checkbox" name='features' value='Open' /> Opening price</label>
-            <label class="checkbox-inline"> <input type="checkbox" name='features' value='Close' checked="checked" />Closing price</label>
-            <!-- <label class="radio-inline"> <input type="radio" name='features' value='' checked="checked" /> Regular</label>
-            <label class="radio-inline"> <input type="radio" name='features' value='adj_' />Adjusted</label> -->
-            <br>
-            <br>
-            <button type="submit" class="btn btn-default">Submit</button><br>
-          </form>
-        </div>
       </div>
+    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
-    <!-- <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script> -->
-    <!-- <script src="../../../../assets/js/vendor/popper.min.js"></script> -->
-    <!-- <script src="../../../../dist/js/bootstrap.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://getbootstrap.com/assets/js/vendor/popper.min.js"></script>
+    <script src="https://getbootstrap.com/dist/js/bootstrap.min.js"></script>
   </body>
 </html>

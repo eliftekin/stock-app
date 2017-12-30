@@ -9,7 +9,7 @@
     <title>Error</title>
 
 		<!-- Bootstrap core CSS -->
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
 		<!-- Custom styles for this template -->
     <link rel=stylesheet href="{{ url_for('static', filename='css/main.css') }}">
@@ -29,22 +29,31 @@
         <div class="cover-container">
           <header class="masthead clearfix">
             <div class="inner">
-              <h3 class="masthead-brand">{{msg}}</h3><br>
+              <h3 class="masthead-brand">{{msg}}</h3>
               <nav class="nav nav-masthead">
                 <a class="nav-link active"  href="/">Home</a>
-                <a class="nav-link" href="#">GitHub</a>
+                <a class="nav-link" href="https://github.com/eliftekin/stock-app">GitHub</a>
                 <a class="nav-link" href="https://www.thedataincubator.com/12day.html">12-day</a>
               </nav>
             </div>
           </header>
-        </div>
 
-				<main role="main" class="inner cover">
-					<p class="lead">
-						<a href="https://www.nasdaq.com/screening/company-list.aspx" class="btn btn-lg btn-secondary">Browse Ticker Symbols</a>
-					</p>
-				</main>
+					<main role="main" class="inner cover">
+						<p class="lead">
+							<a href="https://www.nasdaq.com/screening/company-list.aspx" class="btn btn-lg btn-secondary">Browse Ticker Symbols</a>
+						</p>
+					</main>
+        </div>
       </div>
     </div>
+
+		<!-- Bootstrap core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+		<script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+		<script src="https://getbootstrap.com/assets/js/vendor/popper.min.js"></script>
+		<script src="https://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+
   </body>
 </html>
