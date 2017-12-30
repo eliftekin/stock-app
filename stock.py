@@ -51,7 +51,7 @@ class Stock:
                 x_axis_label="Date", y_axis_label='Price', x_axis_type="datetime")
 
         for feature, color in zip(self.features, colors):
-            p.circle(self.df["Date"], self.df[feature], size=2, color=color, alpha=0.8)
+            # p.circle(self.df["Date"], self.df[feature], size=2, color=color, alpha=0.8)
             p.line(self.df["Date"], self.df[feature], color=color, line_width=2, alpha=0.5, legend = feature)
 
         # set plot options
