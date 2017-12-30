@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="ticker stock application">
+    <meta name="description" content="stock application">
     <meta name="author" content="@eliftekin">
     <link rel="icon" href="../../../../favicon.ico">
     <title>Stock App</title>
@@ -23,41 +23,45 @@
         <div class="cover-container">
           <header class="masthead clearfix">
             <div class="inner">
-              <h3 class="masthead-brand">Stock Display</h3>
+              <h3 class="masthead-brand">Stock App</h3>
               <nav class="nav nav-masthead">
                 <a class="nav-link active" href="#">Home</a>
-                <a class="nav-link" href="https://github.com/eliftekin/stock-app">Git-Hub</a>
+                <a class="nav-link" href="https://github.com/eliftekin/stock-app">GitHub</a>
                 <a class="nav-link" href="https://www.thedataincubator.com/12day.html">12-day</a>
               </nav>
             </div>
           </header>
 
           <main role="main" class="inner cover">
-            <h1 class="cover-heading">Select Ticker to Display</h1>
+            <h1 class="cover-heading">Ticker Symbol to Display</h1>
           </main>
         </div>
 
         <form class="form-inline" method="POST" action="{{ url_for('display_ticker') }}">
           <div class="form-group">
+            <input type="text" name = "ticker", class="form-control" value="AAPL">
+          </div>
+          <br>
+          <!-- <div class="form-group">
             <div class="input-group">
                 <select name="comp_select" class="selectpicker form-control" title="Choose one of the following...">
                   {% for o in tickerlist %}
                   <option value="{{ o.ticker }}">{{ o.ticker }}</option>
                   {% endfor %}
                 </select>
-            </div>
+            </div> -->
             <br>
             <br>
-            <label class="radio-inline"> <input type="radio" name='features' value='' checked="checked" /> Regular</label>
-            <label class="radio-inline"> <input type="radio" name='features' value='adj_' />Adjusted</label>
+            <label class="checkbox-inline"> <input type="checkbox" name='features' value='Open' /> Opening price</label>
+            <label class="checkbox-inline"> <input type="checkbox" name='features' value='Close' checked="checked" />Closing price</label>
+            <!-- <label class="radio-inline"> <input type="radio" name='features' value='' checked="checked" /> Regular</label>
+            <label class="radio-inline"> <input type="radio" name='features' value='adj_' />Adjusted</label> -->
             <br>
             <br>
             <button type="submit" class="btn btn-default">Submit</button><br>
-          </div>
-        </form>
-
+          </form>
+        </div>
       </div>
-    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

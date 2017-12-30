@@ -3,52 +3,59 @@ import requests
 import simplejson as json
 
 #data analysis
+import datetime as dt
 import pandas as pd
 
 #plot
-from bokeh.models import ColumnDataSource
+from bokeh.models import ColumnDataSource, Range1d, Label
 from bokeh.plotting import figure, show, output_file
-from bokeh.models import DatetimeTickFormatter
+from bokeh.models import DatetimeTickFormatter, DatePicker
 
 class Stock:
     def __init__(self):
         self.df = pd.DataFrame()
-        self.tickers = []
-        self.nasdaq = ''
-        self.set_df()
-        self.set_tickers()
+        self.ticker = None
+        self.error = False
+        self.features = []
+        self.nasdaq = ""
+        self.title = ""
 
-    def set_df(self):
-        r = requests.get('https://www.quandl.com/api/v3/datatables/WIKI/PRICES.json?api_key=Tw2yYK7DQ7hzMWvQqVYi', auth=('user', 'pass'))
-        column_names = [s["name"] for s in r.json()['datatable']["columns"]]
-        values = r.json()['datatable']['data']
-        df = pd.DataFrame(values, columns = column_names)
-        df["date"] = pd.to_datetime(df["date"])
-        self.df = df
+    def set_ticker(self, ticker):
+        self.ticker =ticker
+        self.nasdaq = "http://www.nasdaq.com/symbol/" + self.ticker.lower() + "/real-time"
 
-    def set_tickers(self):
-        self.tickers = list (self.df['ticker'].unique())
+    def set_features(self, features):
+        self.features = features
 
-    def create_stock_plot(self, ticker, feature):
-        self.nasdaq = "http://www.nasdaq.com/symbol/" + ticker.lower() + "/real-time"
-        t = 'Regular' if feature == '' else 'Adjusted'
-        self.title = 'Quandl WIKI ' + t +' Stock Prices: ' + ticker
+    def get_request(self):
+        '''Pull one-month data from API of self.ticker and convert to pandas df'''
 
+        today = dt.date.strftime(dt.date.today(), format = "%Y-%m-%d")
+        one_month_ago = dt.date.strftime(dt.date.today() - dt.timedelta(days=30), format = "%Y-%m-%d")
+        api_link_day_info = "start_date=" + one_month_ago + "&" + "end_date=" + today
+        api_link = 'https://www.quandl.com/api/v3/datasets/WIKI/' + self.ticker +'.json?&'+ api_link_day_info + '&api_key=Tw2yYK7DQ7hzMWvQqVYi'
+        r = requests.get(api_link)
+        self.error = not r.ok
+
+        if r.ok: # check if correct ticker symbol is given by user
+            column_names = r.json()['dataset']["column_names"]
+            values = r.json()['dataset']['data']
+            df = pd.DataFrame(values, columns=column_names)
+            df["Date"] = pd.to_datetime(df["Date"])
+            self.df = df
+
+    def create_stock_plot(self):
+        self.title = 'Quandl WIKI '+ str(self.df["Date"].min())[0:4] +' Stock Prices: ' + self.ticker
+        colors = ['red' if feature == 'Open' else 'navy' for feature in self.features]
         p = figure(plot_width=800, plot_height=400,
-                x_axis_label='date', y_axis_label='closing price', x_axis_type="datetime")
+                x_axis_label="Date", y_axis_label='Price', x_axis_type="datetime")
 
-        df_plot = self.df[self.df['ticker']== ticker]
-        df_plot = df_plot.sort_values(by="date",ascending=True).set_index("date").last("30D")
-        df_plot = df_plot.reset_index()
+        for feature, color in zip(self.features, colors):
+            p.circle(self.df["Date"], self.df[feature], size=2, color=color, alpha=0.8)
+            p.line(self.df["Date"], self.df[feature], color=color, line_width=2, alpha=0.5, legend = feature)
 
-        # source = ColumnDataSource(self.df[self.df['ticker']== ticker])
-        # p.title.text = 'Quandl WIKI ' + t +' Stock Prices: ' + ticker
-        # p.line('date', feature + 'open', source = source, color='navy', alpha=0.5, legend = 'open')
-        # p.line('date', feature + 'close', source = source, color='red', alpha=0.5, legend = 'close')
-        # p.line(df_plot['date'], df_plot[feature + 'open'],  color='navy', alpha=0.5, legend = 'open')
-        p.line(df_plot['date'], df_plot[feature + 'close'], color='red', alpha=0.5)
+        # set plot options
         p.legend.location = "top_right"
         p.legend.click_policy="hide"
-        p.xaxis.formatter=DatetimeTickFormatter(years=["%B %Y"],)
-#        p.xaxis.major_label_orientation = pi/4
+        p.xaxis.formatter=DatetimeTickFormatter(years=["%B %Y"])
         return p

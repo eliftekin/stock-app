@@ -11,18 +11,31 @@ stock = Stock()
 
 @app.route('/')
 def index():
-  return render_template('index.html',
-  tickerlist = [{'ticker' : ticker} for ticker in stock.tickers])
+    return render_template('index.html')
+  # return render_template('index.html',
+  # tickerlist = [{'ticker' : ticker} for ticker in stock.tickers])
 
 @app.route('/display_ticker/', methods=['GET', 'POST'])
 def display_ticker():
-    ticker = request.form.get('comp_select')
-    feature = request.form.get('features')
-    plot = stock.create_stock_plot(ticker, feature)
-    script, div = components(plot)
-    return render_template("display_ticker.html", ticker=ticker,
-    title = stock.title, nasdaq = stock.nasdaq,
-    the_div=div, the_script=script)
+    ticker = request.form.get('ticker')
+    features = request.form.getlist('features')
+    if ticker == None and stock.ticker == None:
+        return render_template("error_message.html", msg = "Error: Please enter valid Ticker Symbol")
+
+    if not ticker == None:
+        stock.set_ticker(ticker)
+        stock.set_features(features)
+        stock.get_request()
+
+    if stock.error:
+        return render_template("error_message.html", msg = "Error: Please enter valid Ticker Symbol")
+    else:
+        plot = stock.create_stock_plot()
+        script, div = components(plot)
+        title = "Error: Please select price category" if stock.features == [] else stock.title
+        return render_template("display_ticker.html", ticker=ticker,
+                                title = title, nasdaq = stock.nasdaq,
+                                the_div=div, the_script=script)
 
 @app.errorhandler(404)
 def page_not_found(error):

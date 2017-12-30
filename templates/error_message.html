@@ -3,10 +3,10 @@
 	<head>
 		<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="display stock">
+    <meta name="description" content="display error message">
     <meta name="author" content="@eliftekin">
 
-    <title>Display Stock</title>
+    <title>Error</title>
 
 		<!-- Bootstrap core CSS -->
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -21,10 +21,6 @@
     }
     </style>
 
-    {{ the_div|safe }}
-    <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.js"></script>
-    {{ the_script|safe }}
-
 </script>
   </head>
   <body>
@@ -33,18 +29,22 @@
         <div class="cover-container">
           <header class="masthead clearfix">
             <div class="inner">
-              <h3 class="masthead-brand">{{title}}</h3>
+              <h3 class="masthead-brand">{{msg}}</h3><br>
               <nav class="nav nav-masthead">
                 <a class="nav-link active"  href="/">Home</a>
                 <a class="nav-link" href="#">GitHub</a>
                 <a class="nav-link" href="https://www.thedataincubator.com/12day.html">12-day</a>
-                <a class="nav-link" href={{nasdaq}}>NASDAQ</a>
               </nav>
             </div>
           </header>
         </div>
+
+				<main role="main" class="inner cover">
+					<p class="lead">
+						<a href="http://www.nasdaq.com/screening/company-list.aspx" class="btn btn-lg btn-secondary">Browse Ticker Symbols</a>
+					</p>
+				</main>
       </div>
     </div>
-
   </body>
 </html>
